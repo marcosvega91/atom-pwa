@@ -4,7 +4,7 @@ import Button from "../shared/button/Button";
 import { i18n } from "../../Locale";
 import ElementManager, { getElementLocales } from "../../ElementManager";
 
-interface CalculatorElementProps {
+interface ICalculatorElementProps {
   atomic: number;
   quantity: number;
   selectElement: (atomic: number) => void;
@@ -14,7 +14,7 @@ function CalculatorElement({
   atomic,
   quantity,
   selectElement,
-}: CalculatorElementProps) {
+}: ICalculatorElementProps) {
   const element = ElementManager.getElement(atomic);
 
   if (!element) {

@@ -5,7 +5,7 @@ import { i18n } from "../../Locale";
 import ElementManager, { getElementLocales } from "../../ElementManager";
 import { IMassCalculatorElement } from "./hooks/useMassCalculator";
 
-interface EditElementModalProps {
+interface IEditElementModalProps {
   isOpen: boolean;
   onClose: () => void;
   increaseQuantity: () => void;
@@ -21,7 +21,7 @@ function EditElementModal({
   decreaseQuantity,
   changeQuantity,
   onClose,
-}: EditElementModalProps) {
+}: IEditElementModalProps) {
   if (!selectedElement) return null;
 
   const element = ElementManager.getElement(selectedElement.atomic);
