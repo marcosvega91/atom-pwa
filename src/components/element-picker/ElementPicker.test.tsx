@@ -1,12 +1,7 @@
 import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import elementManager from "../../ElementManager";
 import ElementPicker from "./ElementPicker";
-
-beforeAll(() => {
-  elementManager.loadElements();
-});
 
 test("search for Neon", () => {
   const onElement = jest.fn();
@@ -19,8 +14,11 @@ test("search for Neon", () => {
 
   userEvent.click(screen.getByText("Noble gases"));
 
-  const neon = elementManager.getElement(10);
-  expect(onElement).toHaveBeenCalledWith(neon);
+  expect(onElement).toHaveBeenCalledWith(
+    expect.objectContaining({
+      name: "Neon",
+    })
+  );
 });
 
 test("search for atomic number 2", () => {
@@ -32,8 +30,11 @@ test("search for atomic number 2", () => {
 
   userEvent.click(screen.getByText("Helium"));
 
-  const helium = elementManager.getElement(2);
-  expect(onElement).toHaveBeenCalledWith(helium);
+  expect(onElement).toHaveBeenCalledWith(
+    expect.objectContaining({
+      name: "Helium",
+    })
+  );
 });
 
 // TODO: unskip when https://github.com/HorusGoul/atom-pwa/issues/27 is fixed
@@ -47,6 +48,9 @@ test.skip("search for atomic number 25", async () => {
 
   userEvent.click(await screen.findByText("Manganese"));
 
-  const manganese = elementManager.getElement(25);
-  expect(onElement).toHaveBeenCalledWith(manganese);
+  expect(onElement).toHaveBeenCalledWith(
+    expect.objectContaining({
+      name: "Manganese",
+    })
+  );
 });
